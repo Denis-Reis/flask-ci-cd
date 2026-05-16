@@ -1,4 +1,4 @@
-name: CI/CD Pipeline Flask
+name: CI/CD Pipeline Flask App
 
 on:
   push:
@@ -22,13 +22,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name Checar estilo do código
+      run: |
+        flake8    
+
     - name: Rodar testes
       run: |
-        echo "Ainda não temos testes, mas aqui rodariam os unit tests"
-
-    - name: Build da aplicação
+        pytest
+        
+    - name: Build Docker
       run: |
-        echo "Build fictício - Flask não precisa compilar"
+        docker build -t flask-app
 
     - name: Deploy (exemplo Docker)
       run: |
