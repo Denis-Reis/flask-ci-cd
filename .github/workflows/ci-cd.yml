@@ -28,7 +28,8 @@ jobs:
 
     - name: Rodar testes
       run: |
-        pytest
+        PYTHONPATH=. pytest
+
         
     - name: Build Docker
       run: |
