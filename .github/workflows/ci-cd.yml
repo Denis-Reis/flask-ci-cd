@@ -22,7 +22,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name Checar estilo do código
+    - name: Checar estilo do código
       run: |
         flake8    
 
