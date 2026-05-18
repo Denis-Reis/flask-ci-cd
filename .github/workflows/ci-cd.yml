@@ -23,23 +23,19 @@ jobs:
         pip install -r requirements.txt
 
     - name: Checar estilo do código
-      run: |
-        flake8
+      run: flake8
 
     - name: Rodar testes
-      run: |
-        PYTHONPATH=. pytest
+      run: PYTHONPATH=. pytest
 
+    # Configura o Buildx no runner
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
+    # Faz o build da imagem
     - name: Build Docker image
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        tags: flask-app:latest
-        load: true
+      run: docker buildx build . -t flask-app --load
 
+    # Roda o container
     - name: Run Docker container (exemplo)
-      run: |
-        docker run -d -p 5000:5000 flask-app:latest
+      run: docker run -d -p 5000:5000 flask-app
