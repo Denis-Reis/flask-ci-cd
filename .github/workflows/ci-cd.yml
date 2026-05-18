@@ -33,7 +33,7 @@ jobs:
         
     - name: Build Docker
       run: |
-        docker build -t flask-app .
+        docker buildx build . -t flask-app
 
     - name: Deploy (exemplo Docker)
       run: |
